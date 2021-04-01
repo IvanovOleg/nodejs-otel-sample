@@ -47,3 +47,10 @@ services:
       - "55681:55681"
     depends_on:
       - jaeger
+  mssql:
+    image: "mcr.microsoft.com/mssql/server"
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "Sjw2pBufpvGfh6*V"
+      ACCEPT_EULA: "Y"
