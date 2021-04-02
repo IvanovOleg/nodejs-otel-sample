@@ -52,9 +52,7 @@ sql.on('error', err => {
 })
 
 sql.connect(config).then(pool => {
-  // Query
-
-  return pool.request()
+  return new sql.Request(pool)
     .input('input_parameter', sql.VarChar(50), 'Oleg')
     .query('select * from employees where name = @input_parameter')
 }).then(result => {
