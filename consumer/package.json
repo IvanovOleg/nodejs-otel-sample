@@ -26,6 +26,8 @@
     "@opentelemetry/node": "^0.18.0",
     "@opentelemetry/tracing": "^0.18.0",
     "kafkajs": "^1.15.0",
-    "opentelemetry-instrumentation-kafkajs": "^0.3.0"
+    "mssql": "^6.3.1",
+    "opentelemetry-instrumentation-kafkajs": "^0.3.0",
+    "opentelemetry-instrumentation-mssql": "^0.3.1"
   }
 }

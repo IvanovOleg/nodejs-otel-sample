@@ -4,6 +4,7 @@ const { BasicTracerProvider, ConsoleSpanExporter, SimpleSpanProcessor } = requir
 const { NodeTracerProvider } = require('@opentelemetry/node');
 const { CollectorTraceExporter } = require('@opentelemetry/exporter-collector');
 const { KafkaJsInstrumentation } = require('opentelemetry-instrumentation-kafkajs');
+const { MssqlInstrumentation } = require('opentelemetry-instrumentation-mssql');
 
 const collectorOptions = {
   serviceName: 'consumer-service'
@@ -13,7 +14,8 @@ const collectorOptions = {
 const traceProvider = new NodeTracerProvider({
   // be sure to disable old plugin
   plugins: {
-    kafkajs: { enabled: false, path: 'opentelemetry-plugin-kafkajs' }
+    kafkajs: { enabled: false, path: 'opentelemetry-plugin-kafkajs' },
+    sequelize: { enabled: false, path: 'opentelemetry-plugin-mssql' }
   }
 });
 
@@ -28,6 +30,10 @@ registerInstrumentations({
   instrumentations: [
     new KafkaJsInstrumentation({
       // see under for available configuration
+    }),
+    new MssqlInstrumentation({
+      // see under for available configuration
+      ignoreOrphanedSpans: false
     })
   ]
 });

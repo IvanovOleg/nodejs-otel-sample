@@ -15,6 +15,6 @@
     "@opentelemetry/node": "^0.18.0",
     "@opentelemetry/tracing": "^0.18.0",
     "mssql": "^6.3.1",
-    "opentelemetry-instrumentation-mssql": "^0.3.0"
+    "opentelemetry-instrumentation-mssql": "^0.3.1"
   }
 }
