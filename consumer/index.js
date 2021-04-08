@@ -1,5 +1,6 @@
-const { tracer } = require('./trace')
+const { tracer } = require('./tracing')
 const { Kafka, logLevel } = require('kafkajs')
+const { countAllMessages } = require('./metrics')
 const { insertEmployee } = require('./database')
 
 const kafka = new Kafka({
@@ -16,12 +17,10 @@ const run = async () => {
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
-      console.log({
-        value: (JSON.parse(message.value.toString()).name),
-      });
       insertEmployee(JSON.parse(message.value.toString()).name,
         JSON.parse(message.value.toString()).last_name,
         JSON.parse(message.value.toString()).position);
+      countAllMessages();
     },
   })
 }

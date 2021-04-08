@@ -1,4 +1,4 @@
-const { tracer } = require ('./trace')
+const { tracer } = require ('./tracing')
 const { Kafka, logLevel } = require('kafkajs');
 
 const kafka = new Kafka({

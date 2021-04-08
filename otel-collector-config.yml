@@ -9,10 +9,30 @@ exporters:
     endpoint: jaeger:14250
     insecure: true
   logging:
+  datadog/api:
+    hostname: LAPTOP-L5J1FK0
+    env: dev
+    service: nodejs-otel-sample
+    version: 1.0.0
+
+    tags:
+      - environment:local
+
+    api:
+      key: <key>
+      site: datadoghq.eu
+
+processors:
+  batch:
+    timeout: 10s
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
-      exporters: [jaeger, logging]
+      exporters: [jaeger, logging, datadog/api]
       processors: []
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging, datadog/api]
