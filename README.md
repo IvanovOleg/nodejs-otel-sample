@@ -1,2 +1,5 @@
 # nodejs-otel-sample
-A sample nodejs and opentelemetry integration.
+A simple nodejs and opentelemetry integration.
+## System Architecture
+### Jaeger
+![GitHub Logo](system-architecture.png)
