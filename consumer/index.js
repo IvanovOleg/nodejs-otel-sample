@@ -1,4 +1,5 @@
 const { tracer } = require('./tracing')
+const logger = require('./logging')
 const { Kafka, logLevel } = require('kafkajs')
 const { countAllMessages } = require('./metrics')
 const { insertEmployee } = require('./database')
@@ -17,6 +18,7 @@ const run = async () => {
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
+      logger.info("Example log line with trace correlation info")
       insertEmployee(JSON.parse(message.value.toString()).name,
         JSON.parse(message.value.toString()).last_name,
         JSON.parse(message.value.toString()).position);

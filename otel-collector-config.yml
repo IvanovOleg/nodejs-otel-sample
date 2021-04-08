@@ -10,7 +10,7 @@ exporters:
     insecure: true
   logging:
   datadog/api:
-    hostname: LAPTOP-L5J1FK0
+    hostname: docker-compose
     env: dev
     service: nodejs-otel-sample
     version: 1.0.0
@@ -36,3 +36,7 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [logging, datadog/api]
+    logs:
+      receivers: [otlp]
+      processors: []
+      exporters: [logging]
